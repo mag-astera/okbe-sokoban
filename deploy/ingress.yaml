@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: okbe-sokoban-play
+  namespace: obelisk
+  annotations:
+    traefik.ingress.kubernetes.io/router.middlewares: kube-system-redirect-to-https@kubernetescrd
+spec:
+  ingressClassName: traefik
+  tls:
+  - hosts: [sokoban.astera.sh]
+  rules:
+  - host: sokoban.astera.sh
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: okbe-sokoban-play
+            port: {name: http}

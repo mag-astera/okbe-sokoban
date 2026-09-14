@@ -1,0 +1,652 @@
+{
+ "name": "progressive_levels/progressive_13_sokoban_keys_doors_survival",
+ "saved": 1789257605.210007,
+ "strings": {},
+ "summary": "9x9 \u00b7 21 walls \u00b7 3 goals in 1 group(s)",
+ "api_version": "26.transition-h.1",
+ "world": {
+  "rows": 9,
+  "cols": 9,
+  "walls": [
+   10,
+   11,
+   12,
+   13,
+   16,
+   22,
+   23,
+   32,
+   33,
+   35,
+   46,
+   47,
+   48,
+   50,
+   57,
+   58,
+   59,
+   60,
+   62,
+   64,
+   76
+  ],
+  "constraints": [],
+  "green_badgers": [],
+  "start": 36,
+  "doors": [
+   {
+    "id": 1,
+    "cell": 9,
+    "color": "blue",
+    "open": false
+   },
+   {
+    "id": 2,
+    "cell": 34,
+    "color": "purple",
+    "open": false
+   },
+   {
+    "id": 3,
+    "cell": 45,
+    "color": "red",
+    "open": false
+   },
+   {
+    "id": 4,
+    "cell": 61,
+    "color": "orange",
+    "open": false
+   }
+  ],
+  "buttons": [],
+  "boxes": [
+   {
+    "id": 1,
+    "cell": 39
+   },
+   {
+    "id": 2,
+    "cell": 30
+   },
+   {
+    "id": 3,
+    "cell": 19
+   }
+  ],
+  "workshop": {
+   "objects": [],
+   "values": {},
+   "movement_metabolism": true
+  },
+  "p_main": 1.0,
+  "kernel": {},
+  "goals": [
+   {
+    "id": 1,
+    "cells": [
+     {
+      "li": 24,
+      "a": null
+     },
+     {
+      "li": 56,
+      "a": null
+     },
+     {
+      "li": 72,
+      "a": null
+     }
+    ]
+   }
+  ],
+  "nextGoalId": 2,
+  "internal_goalstates_2_type_ind": {
+   "2": 0,
+   "5": 1,
+   "20": 1,
+   "37": 0,
+   "44": 0,
+   "49": 1,
+   "75": 1,
+   "78": 0
+  },
+  "boolean_states_2_type_ind": {
+   "8": 1,
+   "21": 1,
+   "74": 1,
+   "80": 1
+  },
+  "item_names": {
+   "8": "key_1",
+   "21": "key_2",
+   "74": "key_3",
+   "80": "key_4"
+  },
+  "nis": 16,
+  "nis_by_type": {},
+  "internal_state_values": {
+   "0": 15,
+   "1": 15
+  },
+  "item_held": {},
+  "task_clauses": [
+   [
+    [
+     "box_1",
+     "in",
+     [
+      24,
+      56,
+      72
+     ]
+    ],
+    [
+     "box_2",
+     "in",
+     [
+      24,
+      56,
+      72
+     ]
+    ],
+    [
+     "box_3",
+     "in",
+     [
+      24,
+      56,
+      72
+     ]
+    ],
+    [
+     "hunger",
+     ">",
+     0
+    ],
+    [
+     "hydration",
+     ">",
+     0
+    ]
+   ]
+  ],
+  "task_clause_ix": 0
+ },
+ "format": "okbe-warpcraft-level",
+ "format_version": 1,
+ "coordinates": "row-major-top-left",
+ "tutorial": {
+  "spec": {
+   "version": 1,
+   "spaces": [
+    "X",
+    "hunger",
+    "hydration",
+    "key_1",
+    "key_2",
+    "key_3",
+    "key_4",
+    "door_1",
+    "door_2",
+    "door_3",
+    "door_4",
+    "box_1",
+    "box_2",
+    "box_3"
+   ],
+   "features": {},
+   "affordances": [
+    {
+     "target": "hunger",
+     "default_alpha": 0,
+     "merge": "reject",
+     "placement_managed": false,
+     "rules": [
+      {
+       "when": {
+        "and": [
+         {
+          "var": "action",
+          "in": [
+           0
+          ]
+         },
+         {
+          "var": "X",
+          "in": [
+           1,
+           37,
+           44,
+           78
+          ]
+         }
+        ]
+       },
+       "alpha": 1
+      },
+      {
+       "when": {
+        "and": [
+         {
+          "var": "action",
+          "in": [
+           0,
+           1
+          ]
+         },
+         {
+          "not": {
+           "and": [
+            {
+             "var": "action",
+             "in": [
+              0
+             ]
+            },
+            {
+             "var": "X",
+             "in": [
+              1,
+              37,
+              44,
+              78
+             ]
+            }
+           ]
+          }
+         }
+        ]
+       },
+       "alpha": 2
+      }
+     ]
+    },
+    {
+     "target": "hydration",
+     "default_alpha": 0,
+     "merge": "reject",
+     "placement_managed": false,
+     "rules": [
+      {
+       "when": {
+        "and": [
+         {
+          "var": "action",
+          "in": [
+           0
+          ]
+         },
+         {
+          "var": "X",
+          "in": [
+           6,
+           20,
+           49,
+           75
+          ]
+         }
+        ]
+       },
+       "alpha": 1
+      },
+      {
+       "when": {
+        "and": [
+         {
+          "var": "action",
+          "in": [
+           0,
+           1
+          ]
+         },
+         {
+          "not": {
+           "and": [
+            {
+             "var": "action",
+             "in": [
+              0
+             ]
+            },
+            {
+             "var": "X",
+             "in": [
+              6,
+              20,
+              49,
+              75
+             ]
+            }
+           ]
+          }
+         }
+        ]
+       },
+       "alpha": 2
+      }
+     ]
+    },
+    {
+     "target": "key_1",
+     "default_alpha": 0,
+     "merge": "reject",
+     "placement_managed": true,
+     "rules": [
+      {
+       "when": {
+        "and": [
+         {
+          "var": "action",
+          "in": [
+           0
+          ]
+         },
+         {
+          "var": "X",
+          "in": [
+           8
+          ]
+         }
+        ]
+       },
+       "alpha": 1
+      }
+     ]
+    },
+    {
+     "target": "key_2",
+     "default_alpha": 0,
+     "merge": "reject",
+     "placement_managed": true,
+     "rules": [
+      {
+       "when": {
+        "and": [
+         {
+          "var": "action",
+          "in": [
+           0
+          ]
+         },
+         {
+          "var": "X",
+          "in": [
+           21
+          ]
+         }
+        ]
+       },
+       "alpha": 1
+      }
+     ]
+    },
+    {
+     "target": "key_3",
+     "default_alpha": 0,
+     "merge": "reject",
+     "placement_managed": true,
+     "rules": [
+      {
+       "when": {
+        "and": [
+         {
+          "var": "action",
+          "in": [
+           0
+          ]
+         },
+         {
+          "var": "X",
+          "in": [
+           74
+          ]
+         }
+        ]
+       },
+       "alpha": 1
+      }
+     ]
+    },
+    {
+     "target": "key_4",
+     "default_alpha": 0,
+     "merge": "reject",
+     "placement_managed": true,
+     "rules": [
+      {
+       "when": {
+        "and": [
+         {
+          "var": "action",
+          "in": [
+           0
+          ]
+         },
+         {
+          "var": "X",
+          "in": [
+           80
+          ]
+         }
+        ]
+       },
+       "alpha": 1
+      }
+     ]
+    },
+    {
+     "target": "door_1",
+     "default_alpha": 0,
+     "merge": "reject",
+     "rules": [
+      {
+       "alpha": 1,
+       "when": {
+        "and": [
+         {
+          "var": "key_3",
+          "in": [
+           1
+          ]
+         },
+         {
+          "var": "X",
+          "in": [
+           18,
+           0
+          ]
+         },
+         {
+          "var": "action",
+          "in": [
+           0
+          ]
+         }
+        ]
+       }
+      }
+     ],
+     "placement_managed": false
+    },
+    {
+     "target": "door_2",
+     "default_alpha": 0,
+     "merge": "reject",
+     "rules": [
+      {
+       "alpha": 1,
+       "when": {
+        "and": [
+         {
+          "var": "key_4",
+          "in": [
+           1
+          ]
+         },
+         {
+          "var": "X",
+          "in": [
+           43,
+           25
+          ]
+         },
+         {
+          "var": "action",
+          "in": [
+           0
+          ]
+         }
+        ]
+       }
+      }
+     ],
+     "placement_managed": false
+    },
+    {
+     "target": "door_3",
+     "default_alpha": 0,
+     "merge": "reject",
+     "rules": [
+      {
+       "alpha": 1,
+       "when": {
+        "and": [
+         {
+          "var": "key_1",
+          "in": [
+           1
+          ]
+         },
+         {
+          "var": "X",
+          "in": [
+           54,
+           36
+          ]
+         },
+         {
+          "var": "action",
+          "in": [
+           0
+          ]
+         }
+        ]
+       }
+      }
+     ],
+     "placement_managed": false
+    },
+    {
+     "target": "door_4",
+     "default_alpha": 0,
+     "merge": "reject",
+     "rules": [
+      {
+       "alpha": 1,
+       "when": {
+        "and": [
+         {
+          "var": "key_2",
+          "in": [
+           1
+          ]
+         },
+         {
+          "var": "X",
+          "in": [
+           70,
+           52
+          ]
+         },
+         {
+          "var": "action",
+          "in": [
+           0
+          ]
+         }
+        ]
+       }
+      }
+     ],
+     "placement_managed": false
+    }
+   ],
+   "custom_spaces": [],
+   "sokoban": {
+    "rows": 9,
+    "cols": 9,
+    "walls": [
+     10,
+     11,
+     12,
+     13,
+     16,
+     22,
+     23,
+     32,
+     33,
+     35,
+     46,
+     47,
+     48,
+     57,
+     58,
+     59,
+     60,
+     62,
+     64,
+     76
+    ],
+    "boxes": [
+     "box_1",
+     "box_2",
+     "box_3"
+    ],
+    "doors": [
+     {
+      "name": "door_1",
+      "cell": 9
+     },
+     {
+      "name": "door_2",
+      "cell": 34
+     },
+     {
+      "name": "door_3",
+      "cell": 45
+     },
+     {
+      "name": "door_4",
+      "cell": 61
+     }
+    ]
+   },
+   "x_identity_when": {
+    "or": [
+     {
+      "var": "hunger",
+      "in": [
+       0
+      ]
+     },
+     {
+      "var": "hydration",
+      "in": [
+       0
+      ]
+     }
+    ]
+   }
+  },
+  "objective": "task",
+  "objective_text": "Push all three boxes onto the tan targets at cells 24, 56 and 72; any box may fill any target. Keep hunger and hydration above 0.",
+  "controls_text": "Arrows: move / push \u00b7 Space: interact \u00b7 W: wait",
+  "description": "Push all three boxes onto the tan targets at cells 24, 56 and 72; any box may fill any target. Keep hunger and hydration above 0. Matches the key/door map on PDF page 24: agent starts at 36; red key 8 \u2192 red door 45; orange key 21 \u2192 orange door 61; blue key 74 \u2192 blue door 9; purple key 80 \u2192 purple door 34. Space collects a key on its cell or opens a matching door from an adjacent cell. Keys are retained; doors stay open. No chain pushes. Trees: 1, 37, 44, 78. Lakes: 6, 20, 49, 75; the top lake is moved two cells right from its PDF position (4 \u2192 6), as requested. Hunger and hydration start at 15 and refill to 15; arrow actions deplete each by one; Space/W hold unless refilling. Use factorized Test. The full Cartesian product of this 9x9 three-box map exceeds the tutorial build limit; compact H does not enumerate it.",
+  "source": "progressively-harder-levels.pdf",
+  "source_pages": [
+   24
+  ],
+  "deterministic": true
+ }
+}

@@ -1,0 +1,170 @@
+{
+  "name": "progressive_10_sokoban",
+  "saved": 1789250010,
+  "strings": {},
+  "summary": "9x9 \u00b7 3 boxes",
+  "api_version": "26.transition-h.1",
+  "tutorial": {
+    "spec": {
+      "version": 1,
+      "spaces": [
+        "X",
+        "box_1",
+        "box_2",
+        "box_3"
+      ],
+      "features": {},
+      "affordances": [],
+      "custom_spaces": [],
+      "sokoban": {
+        "rows": 9,
+        "cols": 9,
+        "walls": [
+          10,
+          11,
+          12,
+          13,
+          16,
+          22,
+          23,
+          32,
+          33,
+          35,
+          46,
+          47,
+          48,
+          57,
+          58,
+          59,
+          60,
+          62,
+          64,
+          76
+        ],
+        "boxes": [
+          "box_1",
+          "box_2",
+          "box_3"
+        ],
+        "doors": []
+      }
+    },
+    "objective": "task",
+    "objective_text": "Push all three boxes onto the tan targets at cells 24, 56 and 72; any box may fill any target.",
+    "controls_text": "Arrows: move / push \u00b7 Space: interact \u00b7 W: wait",
+    "description": "Push all three boxes onto the tan targets at cells 24, 56 and 72; any box may fill any target. The walls, boxes, targets and starting position follow the PDF page 20\u201321 map. No chain pushes. Use factorized Test. The full Cartesian product of this 9x9 three-box map exceeds the tutorial build limit; compact H does not enumerate it.",
+    "source": "progressively-harder-levels.pdf",
+    "source_pages": [
+      18
+    ],
+    "deterministic": true
+  },
+  "world": {
+    "rows": 9,
+    "cols": 9,
+    "walls": [
+      10,
+      11,
+      12,
+      13,
+      16,
+      22,
+      23,
+      32,
+      33,
+      35,
+      46,
+      47,
+      48,
+      57,
+      58,
+      59,
+      60,
+      62,
+      64,
+      76
+    ],
+    "constraints": [],
+    "green_badgers": [],
+    "start": 36,
+    "doors": [],
+    "buttons": [],
+    "boxes": [
+      {
+        "id": 1,
+        "cell": 29
+      },
+      {
+        "id": 2,
+        "cell": 30
+      },
+      {
+        "id": 3,
+        "cell": 51
+      }
+    ],
+    "p_main": 1.0,
+    "kernel": {},
+    "goals": [
+      {
+        "id": 1,
+        "cells": [
+          {
+            "li": 24,
+            "a": null
+          },
+          {
+            "li": 56,
+            "a": null
+          },
+          {
+            "li": 72,
+            "a": null
+          }
+        ]
+      }
+    ],
+    "nextGoalId": 2,
+    "internal_goalstates_2_type_ind": {},
+    "boolean_states_2_type_ind": {},
+    "nis": 41,
+    "nis_by_type": {},
+    "internal_state_values": {},
+    "item_held": {},
+    "task_clauses": [
+      [
+        [
+          "box_1",
+          "in",
+          [
+            24,
+            56,
+            72
+          ]
+        ],
+        [
+          "box_2",
+          "in",
+          [
+            24,
+            56,
+            72
+          ]
+        ],
+        [
+          "box_3",
+          "in",
+          [
+            24,
+            56,
+            72
+          ]
+        ]
+      ]
+    ],
+    "task_clause_ix": 0
+  },
+  "format": "okbe-warpcraft-level",
+  "format_version": 1,
+  "coordinates": "row-major-top-left"
+}

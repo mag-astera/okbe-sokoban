@@ -1,0 +1,346 @@
+{
+  "name": "progressive_11_sokoban_survival",
+  "saved": 1789250011,
+  "strings": {},
+  "summary": "9x9 \u00b7 3 boxes \u00b7 survival",
+  "api_version": "26.transition-h.1",
+  "tutorial": {
+    "spec": {
+      "version": 1,
+      "spaces": [
+        "X",
+        "hunger",
+        "hydration",
+        "box_1",
+        "box_2",
+        "box_3"
+      ],
+      "features": {},
+      "affordances": [
+        {
+          "target": "hunger",
+          "default_alpha": 0,
+          "merge": "reject",
+          "placement_managed": false,
+          "rules": [
+            {
+              "when": {
+                "and": [
+                  {
+                    "var": "action",
+                    "in": [
+                      0
+                    ]
+                  },
+                  {
+                    "var": "X",
+                    "in": [
+                      1,
+                      37,
+                      44,
+                      78
+                    ]
+                  }
+                ]
+              },
+              "alpha": 1
+            },
+            {
+              "when": {
+                "and": [
+                  {
+                    "var": "action",
+                    "in": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "not": {
+                      "and": [
+                        {
+                          "var": "action",
+                          "in": [
+                            0
+                          ]
+                        },
+                        {
+                          "var": "X",
+                          "in": [
+                            1,
+                            37,
+                            44,
+                            78
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              "alpha": 2
+            }
+          ]
+        },
+        {
+          "target": "hydration",
+          "default_alpha": 0,
+          "merge": "reject",
+          "placement_managed": false,
+          "rules": [
+            {
+              "when": {
+                "and": [
+                  {
+                    "var": "action",
+                    "in": [
+                      0
+                    ]
+                  },
+                  {
+                    "var": "X",
+                    "in": [
+                      5,
+                      20,
+                      49,
+                      75
+                    ]
+                  }
+                ]
+              },
+              "alpha": 1
+            },
+            {
+              "when": {
+                "and": [
+                  {
+                    "var": "action",
+                    "in": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "not": {
+                      "and": [
+                        {
+                          "var": "action",
+                          "in": [
+                            0
+                          ]
+                        },
+                        {
+                          "var": "X",
+                          "in": [
+                            5,
+                            20,
+                            49,
+                            75
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              "alpha": 2
+            }
+          ]
+        }
+      ],
+      "custom_spaces": [],
+      "sokoban": {
+        "rows": 9,
+        "cols": 9,
+        "walls": [
+          10,
+          11,
+          12,
+          13,
+          16,
+          22,
+          23,
+          32,
+          33,
+          35,
+          46,
+          47,
+          48,
+          57,
+          58,
+          59,
+          60,
+          62,
+          64,
+          76
+        ],
+        "boxes": [
+          "box_1",
+          "box_2",
+          "box_3"
+        ],
+        "doors": []
+      },
+      "x_identity_when": {
+        "or": [
+          {
+            "var": "hunger",
+            "in": [
+              0
+            ]
+          },
+          {
+            "var": "hydration",
+            "in": [
+              0
+            ]
+          }
+        ]
+      }
+    },
+    "objective": "task",
+    "objective_text": "Push all three boxes onto the tan targets at cells 24, 56 and 72; any box may fill any target. Keep hunger and hydration above 0.",
+    "controls_text": "Arrows: move / push \u00b7 Space: interact \u00b7 W: wait",
+    "description": "Push all three boxes onto the tan targets at cells 24, 56 and 72; any box may fill any target. Keep hunger and hydration above 0. Based on PDF page 23, with the top lake moved two cells right: agent starts at cell 36 (aligned with the other two challenges); trees at 1, 37, 44, 78; lakes at 5, 20, 49, 75. Hunger and hydration start at 15 and refill to 15 (states 0\u201315, with 0 death). Space eats or drinks on a source; arrow actions deplete both by one; other actions hold unless refilling. No chain pushes. Use factorized Test. The full Cartesian product of this 9x9 three-box map exceeds the tutorial build limit; compact H does not enumerate it.",
+    "source": "progressively-harder-levels.pdf",
+    "source_pages": [
+      23
+    ],
+    "deterministic": true
+  },
+  "world": {
+    "rows": 9,
+    "cols": 9,
+    "walls": [
+      10,
+      11,
+      12,
+      13,
+      16,
+      22,
+      23,
+      32,
+      33,
+      35,
+      46,
+      47,
+      48,
+      57,
+      58,
+      59,
+      60,
+      62,
+      64,
+      76
+    ],
+    "constraints": [],
+    "green_badgers": [],
+    "start": 36,
+    "doors": [],
+    "buttons": [],
+    "boxes": [
+      {
+        "id": 1,
+        "cell": 29
+      },
+      {
+        "id": 2,
+        "cell": 30
+      },
+      {
+        "id": 3,
+        "cell": 51
+      }
+    ],
+    "workshop": {
+      "objects": [],
+      "values": {},
+      "movement_metabolism": true
+    },
+    "p_main": 1.0,
+    "kernel": {},
+    "goals": [
+      {
+        "id": 1,
+        "cells": [
+          {
+            "li": 24,
+            "a": null
+          },
+          {
+            "li": 56,
+            "a": null
+          },
+          {
+            "li": 72,
+            "a": null
+          }
+        ]
+      }
+    ],
+    "nextGoalId": 2,
+    "internal_goalstates_2_type_ind": {
+      "1": 0,
+      "37": 0,
+      "44": 0,
+      "78": 0,
+      "5": 1,
+      "20": 1,
+      "49": 1,
+      "75": 1
+    },
+    "boolean_states_2_type_ind": {},
+    "nis": 16,
+    "nis_by_type": {},
+    "internal_state_values": {
+      "0": 15,
+      "1": 15
+    },
+    "item_held": {},
+    "task_clauses": [
+      [
+        [
+          "box_1",
+          "in",
+          [
+            24,
+            56,
+            72
+          ]
+        ],
+        [
+          "box_2",
+          "in",
+          [
+            24,
+            56,
+            72
+          ]
+        ],
+        [
+          "box_3",
+          "in",
+          [
+            24,
+            56,
+            72
+          ]
+        ],
+        [
+          "hunger",
+          ">",
+          0
+        ],
+        [
+          "hydration",
+          ">",
+          0
+        ]
+      ]
+    ],
+    "task_clause_ix": 0
+  },
+  "format": "okbe-warpcraft-level",
+  "format_version": 1,
+  "coordinates": "row-major-top-left"
+}

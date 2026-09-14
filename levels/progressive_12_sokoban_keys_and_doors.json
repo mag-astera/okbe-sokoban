@@ -1,0 +1,470 @@
+{
+ "name": "progressive_levels/progressive_12_sokoban_keys_and_doors",
+ "saved": 1789257180.8452969,
+ "strings": {},
+ "summary": "9x9 \u00b7 20 walls \u00b7 3 goals in 1 group(s)",
+ "api_version": "26.transition-h.1",
+ "world": {
+  "rows": 9,
+  "cols": 9,
+  "walls": [
+   10,
+   11,
+   12,
+   13,
+   16,
+   22,
+   23,
+   32,
+   33,
+   35,
+   46,
+   47,
+   48,
+   57,
+   58,
+   59,
+   60,
+   62,
+   64,
+   76
+  ],
+  "constraints": [],
+  "green_badgers": [],
+  "start": 36,
+  "doors": [
+   {
+    "id": 1,
+    "cell": 9,
+    "color": "blue",
+    "open": false
+   },
+   {
+    "id": 2,
+    "cell": 34,
+    "color": "purple",
+    "open": false
+   },
+   {
+    "id": 3,
+    "cell": 45,
+    "color": "red",
+    "open": false
+   },
+   {
+    "id": 4,
+    "cell": 61,
+    "color": "orange",
+    "open": false
+   }
+  ],
+  "buttons": [],
+  "boxes": [
+   {
+    "id": 1,
+    "cell": 29
+   },
+   {
+    "id": 2,
+    "cell": 30
+   },
+   {
+    "id": 3,
+    "cell": 51
+   }
+  ],
+  "p_main": 1.0,
+  "kernel": {},
+  "goals": [
+   {
+    "id": 1,
+    "cells": [
+     {
+      "li": 24,
+      "a": null
+     },
+     {
+      "li": 56,
+      "a": null
+     },
+     {
+      "li": 72,
+      "a": null
+     }
+    ]
+   }
+  ],
+  "nextGoalId": 2,
+  "internal_goalstates_2_type_ind": {},
+  "boolean_states_2_type_ind": {
+   "8": 1,
+   "21": 1,
+   "74": 1,
+   "80": 1
+  },
+  "nis": 41,
+  "nis_by_type": {},
+  "internal_state_values": {},
+  "item_held": {},
+  "task_clauses": [
+   [
+    [
+     "box_1",
+     "in",
+     [
+      24,
+      56,
+      72
+     ]
+    ],
+    [
+     "box_2",
+     "in",
+     [
+      24,
+      56,
+      72
+     ]
+    ],
+    [
+     "box_3",
+     "in",
+     [
+      24,
+      56,
+      72
+     ]
+    ]
+   ]
+  ],
+  "task_clause_ix": 0
+ },
+ "format": "okbe-warpcraft-level",
+ "format_version": 1,
+ "coordinates": "row-major-top-left",
+ "tutorial": {
+  "spec": {
+   "version": 1,
+   "spaces": [
+    "X",
+    "key_1",
+    "key_2",
+    "key_3",
+    "key_4",
+    "door_1",
+    "door_2",
+    "door_3",
+    "door_4",
+    "box_1",
+    "box_2",
+    "box_3"
+   ],
+   "features": {},
+   "affordances": [
+    {
+     "target": "key_1",
+     "default_alpha": 0,
+     "merge": "reject",
+     "placement_managed": true,
+     "rules": [
+      {
+       "when": {
+        "and": [
+         {
+          "var": "action",
+          "in": [
+           0
+          ]
+         },
+         {
+          "var": "X",
+          "in": [
+           8
+          ]
+         }
+        ]
+       },
+       "alpha": 1
+      }
+     ]
+    },
+    {
+     "target": "key_2",
+     "default_alpha": 0,
+     "merge": "reject",
+     "placement_managed": true,
+     "rules": [
+      {
+       "when": {
+        "and": [
+         {
+          "var": "action",
+          "in": [
+           0
+          ]
+         },
+         {
+          "var": "X",
+          "in": [
+           21
+          ]
+         }
+        ]
+       },
+       "alpha": 1
+      }
+     ]
+    },
+    {
+     "target": "key_3",
+     "default_alpha": 0,
+     "merge": "reject",
+     "placement_managed": true,
+     "rules": [
+      {
+       "when": {
+        "and": [
+         {
+          "var": "action",
+          "in": [
+           0
+          ]
+         },
+         {
+          "var": "X",
+          "in": [
+           74
+          ]
+         }
+        ]
+       },
+       "alpha": 1
+      }
+     ]
+    },
+    {
+     "target": "key_4",
+     "default_alpha": 0,
+     "merge": "reject",
+     "placement_managed": true,
+     "rules": [
+      {
+       "when": {
+        "and": [
+         {
+          "var": "action",
+          "in": [
+           0
+          ]
+         },
+         {
+          "var": "X",
+          "in": [
+           80
+          ]
+         }
+        ]
+       },
+       "alpha": 1
+      }
+     ]
+    },
+    {
+     "target": "door_1",
+     "default_alpha": 0,
+     "merge": "reject",
+     "rules": [
+      {
+       "alpha": 1,
+       "when": {
+        "and": [
+         {
+          "var": "key_3",
+          "in": [
+           1
+          ]
+         },
+         {
+          "var": "X",
+          "in": [
+           18,
+           0
+          ]
+         },
+         {
+          "var": "action",
+          "in": [
+           0
+          ]
+         }
+        ]
+       }
+      }
+     ],
+     "placement_managed": false
+    },
+    {
+     "target": "door_2",
+     "default_alpha": 0,
+     "merge": "reject",
+     "rules": [
+      {
+       "alpha": 1,
+       "when": {
+        "and": [
+         {
+          "var": "key_4",
+          "in": [
+           1
+          ]
+         },
+         {
+          "var": "X",
+          "in": [
+           43,
+           25
+          ]
+         },
+         {
+          "var": "action",
+          "in": [
+           0
+          ]
+         }
+        ]
+       }
+      }
+     ],
+     "placement_managed": false
+    },
+    {
+     "target": "door_3",
+     "default_alpha": 0,
+     "merge": "reject",
+     "rules": [
+      {
+       "alpha": 1,
+       "when": {
+        "and": [
+         {
+          "var": "key_1",
+          "in": [
+           1
+          ]
+         },
+         {
+          "var": "X",
+          "in": [
+           54,
+           36
+          ]
+         },
+         {
+          "var": "action",
+          "in": [
+           0
+          ]
+         }
+        ]
+       }
+      }
+     ],
+     "placement_managed": false
+    },
+    {
+     "target": "door_4",
+     "default_alpha": 0,
+     "merge": "reject",
+     "rules": [
+      {
+       "alpha": 1,
+       "when": {
+        "and": [
+         {
+          "var": "key_2",
+          "in": [
+           1
+          ]
+         },
+         {
+          "var": "X",
+          "in": [
+           70,
+           52
+          ]
+         },
+         {
+          "var": "action",
+          "in": [
+           0
+          ]
+         }
+        ]
+       }
+      }
+     ],
+     "placement_managed": false
+    }
+   ],
+   "custom_spaces": [],
+   "sokoban": {
+    "rows": 9,
+    "cols": 9,
+    "walls": [
+     10,
+     11,
+     12,
+     13,
+     16,
+     22,
+     23,
+     32,
+     33,
+     35,
+     46,
+     47,
+     48,
+     57,
+     58,
+     59,
+     60,
+     62,
+     64,
+     76
+    ],
+    "boxes": [
+     "box_1",
+     "box_2",
+     "box_3"
+    ],
+    "doors": [
+     {
+      "name": "door_1",
+      "cell": 9
+     },
+     {
+      "name": "door_2",
+      "cell": 34
+     },
+     {
+      "name": "door_3",
+      "cell": 45
+     },
+     {
+      "name": "door_4",
+      "cell": 61
+     }
+    ]
+   }
+  },
+  "objective": "task",
+  "objective_text": "Push all three boxes onto the tan targets at cells 24, 56 and 72; any box may fill any target.",
+  "controls_text": "Arrows: move / push \u00b7 Space: interact \u00b7 W: wait",
+  "description": "Push all three boxes onto the tan targets at cells 24, 56 and 72; any box may fill any target. Matches the key/door map on PDF page 22: agent starts at 36; red key 8 \u2192 red door 45; orange key 21 \u2192 orange door 61; blue key 74 \u2192 blue door 9; purple key 80 \u2192 purple door 34. Space collects a key on its cell or opens a matching door from an adjacent cell. Keys are retained; doors stay open. No chain pushes. Use factorized Test. The full Cartesian product of this 9x9 three-box map exceeds the tutorial build limit; compact H does not enumerate it.",
+  "source": "progressively-harder-levels.pdf",
+  "source_pages": [
+   22
+  ],
+  "deterministic": true
+ }
+}
