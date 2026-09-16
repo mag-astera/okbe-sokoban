@@ -23,18 +23,22 @@ Server restarts reset active games. Winning or losing freezes actions until rest
 
 ## Astera deployment
 
-- URL: https://sokoban.astera.sh/ (Astera private network / Tailscale)
-- Namespace: `obelisk`
-- Deployment, Service, Ingress: `okbe-sokoban-play`
-- Source sync workspace: `okbe-sokoban`, CPU-small
-- Persistent storage: `actl-ws-tomringstrom-okbe-sokoban-home`
-- Runtime interpreter: `/home/dev/okbe-venv/bin/python`
+Deployment moved to [Astera-org/okbe-sokoban-builder][builder], which builds this repo's
+`Dockerfile` into a container image and deploys it with Helm and Argo CD. This repo no longer
+carries Kubernetes manifests; the `deploy/` directory it used to have is gone.
 
-The game is a separate Kubernetes Deployment with restart and health probes. It reads the
-workspace PVC without write access; it does not need the laptop's actl sync or port forwarding.
-Keep the PVC while this deployment exists. The development workspace can be stopped after
-release; do not delete its data. Only one serving replica is configured because sessions are
-held in process memory.
+- URL: https://sokoban.pub.astera.work/ (public internet, no login)
+- Namespace: `obelisk`
+- Deployment and Service: `okbe-sokoban`
+- Image: built and published by the builder repo's CI, tagged with the builder commit
+- Persistent storage: `okbe-sokoban-data`, a dedicated PVC mounted at `/data` (`METRICS_DIR`)
+
+The game now runs the container image rather than the workspace virtualenv, so it no longer
+reads the development workspace PVC. Existing player metrics were copied to the dedicated
+claim above and verified. The workspace copy was deliberately left in place -- it is no longer
+written to, but nothing was deleted.
+
+Only one serving replica is configured because sessions are held in process memory.
 
 All source edits happen locally and reach the workspace through `actl pod sync`. Run checks
 on the workspace:
@@ -48,15 +52,19 @@ through the play API; it also checks session isolation, restart, terminal outcom
 actions, and absence of editing/solver endpoints. Routes are only test artifacts, not exposed
 to players. The remote report is `/home/dev/okbe-release-verification.json`.
 
-Deployment configuration is in `deploy/`. After changing the release, run its verification
-before restarting `deployment/okbe-sokoban-play` to load the new Python code and levels.
+To release a change: merge it here, then bump the `okbe-sokoban` submodule in the builder
+repo and merge that. Argo CD pins the chart and the image to the same builder commit, so
+merging deploys itself -- nothing needs to be restarted by hand. Run the verification above
+before bumping the submodule.
+
+[builder]: https://github.com/Astera-org/okbe-sokoban-builder
 
 ## Portable container
 
 The Dockerfile contains the same app, assets, levels, and Python runtime copies. Build with
 this folder as context and expose port 8080. It uses Waitress and runs as an unprivileged user.
-The Astera deployment instead uses the same Python base image and the PVC-installed virtual
-environment; no registry push is required for this release.
+The Astera deployment builds exactly this Dockerfile and pushes it to Harbor, so the
+container is no longer just a portability convenience -- it is what actually serves.
 
 ## Player metrics
 
