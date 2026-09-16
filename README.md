@@ -21,42 +21,28 @@ It does not accept client-provided worlds, H specifications, or states. Each bro
 an opaque session token in sessionStorage. Sessions expire after 12 hours of inactivity.
 Server restarts reset active games. Winning or losing freezes actions until restart.
 
-## Astera deployment
+## Where it runs
 
-- URL: https://sokoban.astera.sh/ (Astera private network / Tailscale)
-- Namespace: `obelisk`
-- Deployment, Service, Ingress: `okbe-sokoban-play`
-- Source sync workspace: `okbe-sokoban`, CPU-small
-- Persistent storage: `actl-ws-tomringstrom-okbe-sokoban-home`
-- Runtime interpreter: `/home/dev/okbe-venv/bin/python`
+- URL: https://sokoban.pub.astera.work/
 
-The game is a separate Kubernetes Deployment with restart and health probes. It reads the
-workspace PVC without write access; it does not need the laptop's actl sync or port forwarding.
-Keep the PVC while this deployment exists. The development workspace can be stopped after
-release; do not delete its data. Only one serving replica is configured because sessions are
-held in process memory.
+Only one serving process is used, because sessions are held in process memory.
 
-All source edits happen locally and reach the workspace through `actl pod sync`. Run checks
-on the workspace:
+## Release verification
 
 ```sh
-actl pod exec okbe-sokoban -n obelisk -- sh -lc 'cd /home/dev/workspace && OPENBLAS_NUM_THREADS=1 MPLCONFIGDIR=/tmp/okbe-mpl /home/dev/okbe-venv/bin/python verify_release.py'
+OPENBLAS_NUM_THREADS=1 python verify_release.py
 ```
 
 The verifier searches winning routes for the actual release maps and replays every action
 through the play API; it also checks session isolation, restart, terminal outcomes, invalid
 actions, and absence of editing/solver endpoints. Routes are only test artifacts, not exposed
-to players. The remote report is `/home/dev/okbe-release-verification.json`.
-
-Deployment configuration is in `deploy/`. After changing the release, run its verification
-before restarting `deployment/okbe-sokoban-play` to load the new Python code and levels.
+to players. Run it against a release before publishing it.
 
 ## Portable container
 
 The Dockerfile contains the same app, assets, levels, and Python runtime copies. Build with
 this folder as context and expose port 8080. It uses Waitress and runs as an unprivileged user.
-The Astera deployment instead uses the same Python base image and the PVC-installed virtual
-environment; no registry push is required for this release.
+This image is what serves the deployed game.
 
 ## Player metrics
 
@@ -68,10 +54,8 @@ The visible counter shows total failures and failures on the selected challenge.
 counted once when the DBN state violates a constraint and reaches YOU LOSE; voluntary restarts
 are separate. Clearing cookies or using another browser creates another player identity.
 
-Persistent reports are on the same PVC, outside the synced source tree:
-
-- Serving pod: `/data/player-<anonymous-id>.md`
-- Workspace pod: `/home/dev/metrics/player-<anonymous-id>.md`
+Persistent reports are written outside the source tree, under `METRICS_DIR`
+(`/data/player-<anonymous-id>.md` by default).
 
 Each Markdown report includes attempts, actions, wins, failures, restarts, best winning action
 count, and timestamped attempt events with elapsed time and failure reasons. A companion JSON
